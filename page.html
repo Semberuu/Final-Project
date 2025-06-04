@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amarante&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <title>Hospitals in Busan</title>
+    <link rel="icon" href="logo.png" type="image/png">
+</head>
+<body>
+    <nav>
+        <div class="nav-left">
+            <a href="page.html" target="_self"><span>Hospitals in Busan</span></a>
+        </div>
+        <div class="nav-right">
+            <div class="nav-search">
+                <input type="text" id="searchInput" placeholder="search hospitals..." oninput="handleSearch()" onkeydown="handleEnter(event)" />
+            </div>
+            <li onclick="showSidebar()">
+                <a href="#"><i class="fa-regular fa-bars"></i></a>
+            </li>
+        </div>
+        <div class="sidebar">
+            <ul class="filter">
+                <li onclick="hideSidebar()"><a href="#"><i class="fa-regular fa-xmark"></i></a></li>
+            </ul>
+            <div class="filter">
+                <li onclick="renderCards(cardsData)"><a href="#">All</a></li>
+            </div>
+            <div class="filter">
+                <li onclick="filterType()"><a href="#Type">>Type</a></li>
+                <ul class="type">
+                    <li onclick="filterByType('General')"><a href="#General">General</a></li>
+                    <li onclick="filterByType('Specialized')"><a href="#Specialized">Specialized</a></li>
+                    <li onclick="filterByType('Emergency')"><a href="#Emergency">Emergency</a></li>
+                    <li onclick="filterByType('Veterans')"><a href="#Veterans">Veterans</a></li>
+                </ul>
+            </div>
+            <div class="filter">
+                <li onclick="filterLocation()"><a href="#Location">>Location</a></li>
+                <ul class="location">
+                    <li onclick="filterByLocation('Buk-gu')"><a href="#Buk-gu">Buk-gu</a></li>
+                    <li onclick="filterByLocation('Busanjin-gu')"><a href="#Busanjin-gu">Busanjin-gu</a></li>
+                    <li onclick="filterByLocation('Dong-gu')"><a href="#Dong-gu">Dong-gu</a></li>
+                    <li onclick="filterByLocation('Dongnae-gu')"><a href="#Dongnae-gu">Dongnae-gu</a></li>
+                    <li onclick="filterByLocation('Haeundae-gu')"><a href="#Haeundae-gu">Haeundae-gu</a></li>
+                    <li onclick="filterByLocation('Jung-gu')"><a href="#Jung-gu">Jung-gu</a></li>
+                    <li onclick="filterByLocation('Nam-gu')"><a href="#Nam-gu">Nam-gu</a></li>
+                    <li onclick="filterByLocation('Sasang-gu')"><a href="#Sasang-gu">Sasang-gu</a></li>
+                    <li onclick="filterByLocation('Seo-gu')"><a href="#Seo-gu">Seo-gu</a></li>
+                    <li onclick="filterByLocation('Suyeong-gu')"><a href="#Suyeong-gu">Suyeong-gu</a></li>
+                    <li onclick="filterByLocation('Yeongdo-gu')"><a href="#Yeongdo-gu">Yeongdo-gu</a></li>
+                    <li onclick="filterByLocation('Yeonje-gu')"><a href="#Yeonje-gu">Yeonje-gu</a></li>
+                </ul>
+            </div>
+            <div class="filter">
+                <li onclick="filterReview()"><a href="#Review">>Review</a></li>
+                <ul class="review">
+                    <li onclick="filterByReview('five')"><a href="#">5★</a></li>
+                    <li onclick="filterByReview('four')"><a href="#">4★</a></li>
+                    <li onclick="filterByReview('three')"><a href="#">3★</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="card-container" id="card-container"></div>
+
+    <script>
+        const cardsData = [
+            {
+                title: "Busan Medical Center",
+                image: "busan medical center.webp",
+                link: "bmc.html",
+                filters: ["General", "Emergency", "Veterans", "Yeonje-gu", "four"],
+                description: "★★★★☆",
+                address: "Geoje-dong, 359, World Cup-daero, Yeonje-gu"
+            },
+            {
+                title: "Pusan National Univ. Hospital",
+                image: "pnuh.webp",
+                link: "pnuh.html",
+                filters: ["General", "Emergency", "Seo-gu", "four"],
+                description: "★★★★☆",
+                address: "Amidong 1-ga, 179, Gudeok-ro, Seo-gu"
+            },
+            {
+                title: "Busan St. Mary's Hospital",
+                image: "bsmh.webp",
+                link: "bsmh.html",
+                filters: ["General", "Nam-gu", "five"],
+                description: "★★★★★",
+                address: "Yongho-dong, 25-14, Yongho-ro, 232beon-gil, Nam-gu"
+            },
+            {
+                title: "Inje Univ. Haeundae Paik Hospital",
+                image: "hph.webp",
+                link: "hph.html",
+                filters: ["Emergency", "Haeundae-gu", "four"],
+                description: "★★★★☆",
+                address: "Jwa-dong, 875, Haeun-daero, Haeundae-gu"
+            },
+            {
+                title: "Maryknoll Hospital",
+                image: "mh.webp",
+                link: "mh.html",
+                filters: ["General", "Specialized", "Jung-gu", "four"],
+                description: "★★★★☆",
+                address: "Daecheong-dong 4-ga, 121, Junggu-ro, Jung-gu"
+            },
+            {
+                title: "Good Moonhwa Hospital",
+                image: "gmh.jpg",
+                link: "gmh.html",
+                filters: ["General", "Dong-gu", "four"],
+                description: "★★★★☆",
+                address: "Beomil-dong, 119, Beomil-ro, Dong-gu"
+            },
+            {
+                title: "Yeongdo Hospital",
+                image: "yh.jpg",
+                link: "yh.html",
+                filters: ["General", "Yeongdo-gu", "three"],
+                description: "★★★☆☆",
+                address: "Daegyo-dong 2-ga, 85, Taejong-ro, Yeongdo-gu"
+            },
+            {
+                title: "Bumin Hospital",
+                image: "bh.jpg",
+                link: "bh.html",
+                filters: ["Emergency", "Specialized", "Buk-gu", "three"],
+                description: "★★★☆☆",
+                address: "380-28, Deokcheon-dong, Buk-gu, Busan"
+            },
+            {
+                title: "Inje Univ. Busan Paik Hospital",
+                image: "bph.jpg",
+                link: "bph.html",
+                filters: ["Emergency", "Busanjin-gu", "four"],
+                description: "★★★★☆",
+                address: "633-165, Gaegeum-dong, Busanjin-gu, Busan"
+            },
+            {
+                title: "Dae Dong Hospital",
+                image: "ddh.jpg",
+                link: "ddh.html",
+                filters: ["Emergency", "Dongnae-gu", "four"],
+                description: "★★★★☆",
+                address: "530-1, Myeongryun-dong, Dongnae-gu, Busan"
+            },
+            {
+                title: "Centum General Hospital",
+                image: "cgh.jpg",
+                link: "cgh.html",
+                filters: ["Emergency", "Suyeong-gu", "four"],
+                description: "★★★★☆",
+                address: "1072-8, Gwangan-dong, Suyeong-gu, Busan"
+            },
+            {
+                title: "Busan Veterans Hospital",
+                image: "bvh.jpg",
+                link: "bvh.html",
+                filters: ["Veterans", "Sasang-gu", "four"],
+                description: "★★★★☆",
+                address: "Jurye-dong, 420, Baegyang-daero, Sasang-gu"
+            }
+        ];
+
+        function renderCards(cardsArray) {
+            const container = document.getElementById("card-container");
+            container.innerHTML = "";
+            cardsArray.forEach(card => {
+                const cardEl = document.createElement("div");
+                cardEl.className = "card";
+                cardEl.setAttribute("data-filter", card.filters.join(", "));
+                cardEl.innerHTML = `
+                    <a href="${card.link}" class="card-link">
+                        <img src="${card.image}" alt="${card.title}" />
+                        <div class="card-content">
+                            <h3>${card.title}</h3>
+                            <p>${card.description || ''}</p>
+                            <p>${card.address}</p>
+                            <span>read more</span>
+                        </div>
+                    </a>
+                `;
+
+                container.appendChild(cardEl);
+            });
+
+            observeCards();
+        }
+
+        function observeCards() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Animate only once
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('.card').forEach(card => {
+                observer.observe(card);
+            });
+        }
+
+
+        function filterByType(type) {
+            const filtered = cardsData.filter(card =>
+                card.filters.some(f => f.toLowerCase() === type.toLowerCase())
+            );
+            renderCards(filtered);
+        }
+
+        function filterByLocation(location) {
+            const filtered = cardsData.filter(card =>
+                card.filters.some(f => f.toLowerCase() === location.toLowerCase())
+            );
+            renderCards(filtered);
+        }
+
+        function filterByReview(review) {
+            const filtered = cardsData.filter(card =>
+                card.filters.some(f => f.toLowerCase() === review.toLowerCase())
+            );
+            renderCards(filtered);
+        }
+
+        // Sidebar toggle logic preserved
+        function showSidebar() {
+            document.querySelector('.sidebar').classList.add('show');
+        }
+
+        function hideSidebar() {
+            document.querySelector('.sidebar').classList.remove('show');
+        }
+
+        function filterType() {
+            const type = document.querySelector('.type');
+            type.classList.toggle('open');
+            const trigger = type.parentElement.querySelector('li');
+            trigger.classList.toggle('active');
+        }
+
+        function filterLocation() {
+            const location = document.querySelector('.location');
+            location.classList.toggle('open');
+            const trigger = location.parentElement.querySelector('li');
+            trigger.classList.toggle('active');
+        }
+
+        function filterReview() {
+            const review = document.querySelector('.review');
+            review.classList.toggle('open');
+            const trigger = review.parentElement.querySelector('li');
+            trigger.classList.toggle('active');
+        }
+
+        function setupActiveToggle(container) {
+            const links = container.querySelectorAll('li a');
+            links.forEach(link => {
+                link.onclick = function (e) {
+                    e.preventDefault();
+
+                    // Toggle 'active' class
+                    if (this.classList.contains('active')) {
+                        this.classList.remove('active');
+                    } else {
+                        // Remove 'active' from all siblings
+                        links.forEach(l => l.classList.remove('active'));
+                        this.classList.add('active');
+                    }
+                };
+            });
+        }
+
+        function handleSearch() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = cardsData.filter(card =>
+                card.title.toLowerCase().includes(input)
+            );
+            renderCards(filtered);
+        }
+
+        function handleEnter(event) {
+            if (event.key === 'Enter') {
+                event.target.blur(); // removes focus from input
+            }
+        }
+
+
+
+
+        // Initial load
+        renderCards(cardsData);
+    </script>
+</body>
+</html>

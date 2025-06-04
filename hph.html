@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amarante&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <title>Inje Univ. Haeundae Paik Hospital</title>
+    <link rel="icon" href="logo.png" type="image/png">
+</head>
+<body>
+    <nav>
+        <div class="nav-left">
+            <a href="page.html" target="_self"><span>Hospitals in Busan</span></a>
+        </div>
+        <div class="nav-right">
+            <li onclick="showSidebar()">
+                <a href="#"><i class="fa-regular fa-bars"></i></a>
+            </li>
+        </div>
+        <div class="sidebar">
+            <ul class="filter">
+                <li onclick="hideSidebar()"><a href="#"><i class="fa-regular fa-xmark"></i></a></li>
+            </ul>
+            <div class="filter">
+                <li onclick="renderCards(cardsData)"><a href="#">All</a></li>
+            </div>
+            <div class="filter">
+                <li onclick="filterType()"><a href="#Type">>Type</a></li>
+                <ul class="type">
+                    <li onclick="filterByType('General')"><a href="#General">General</a></li>
+                    <li onclick="filterByType('Specialized')"><a href="#Specialized">Specialized</a></li>
+                    <li onclick="filterByType('Emergency')"><a href="#Emergency">Emergency</a></li>
+                </ul>
+            </div>
+            <div class="filter">
+                <li onclick="filterLocation()"><a href="#Location">>Location</a></li>
+                <ul class="location">
+                    <li onclick="filterByLocation('Buk-gu')"><a href="#Buk-gu">Buk-gu</a></li>
+                    <li onclick="filterByLocation('Busanjin-gu')"><a href="#Busanjin-gu">Busanjin-gu</a></li>
+                    <li onclick="filterByLocation('Dong-gu')"><a href="#Dong-gu">Dong-gu</a></li>
+                    <li onclick="filterByLocation('Dongnae-gu')"><a href="#Dongnae-gu">Dongnae-gu</a></li>
+                    <li onclick="filterByLocation('Nam-gu')"><a href="#Nam-gu">Nam-gu</a></li>
+                    <li onclick="filterByLocation('Haeundae-gu')"><a href="#Haeundae-gu">Haeundae-gu</a></li>
+                    <li onclick="filterByLocation('Jung-gu')"><a href="#Jung-gu">Jung-gu</a></li>
+                    <li onclick="filterByLocation('Nam-gu')"><a href="#Nam-gu">Nam-gu</a></li>
+                    <li onclick="filterByLocation('Sasang-gu')"><a href="#Sasang-gu">Sasang-gu</a></li>
+                    <li onclick="filterByLocation('Seo-gu')"><a href="#Seo-gu">Seo-gu</a></li>
+                    <li onclick="filterByLocation('Suyeong-gu')"><a href="#Suyeong-gu">Suyeong-gu</a></li>
+                    <li onclick="filterByLocation('Yeongdo-gu')"><a href="#Yeongdo-gu">Yeongdo-gu</a></li>
+                    <li onclick="filterByLocation('Yeonje-gu')"><a href="#Yeonje-gu">Yeonje-gu</a></li>
+                </ul>
+            </div>
+            <div class="filter">
+                <li onclick="filterReview()"><a href="#Review">>Review</a></li>
+                <ul class="review">
+                    <li onclick="filterByReview('four')"><a href="#">4~5</a></li>
+                    <li onclick="filterByReview('three')"><a href="#">3~4</a></li>
+                    <li onclick="filterByReview('two')"><a href="#">-3</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <h1> </h1>
+        <div class="card-info">
+            <div class="info">
+                <h2>Inje Univ. Haeundae Paik Hospital</h2>
+                <p><strong>Type:</strong>&nbsp;emergency</p>
+                <p><strong>Review:</strong>&nbsp;★★★★☆</p>
+                <p><strong>Address:</strong>&nbsp;Jwa-dong, 875, Haeun-daero, Haeundae-gu</p>
+                <p><strong>Phone:</strong>&nbsp;+82-51-797-0100</p>
+                <p><strong>Description:</strong>&nbsp;Specializing in internal medicine, surgery, ophthalmology, and family medicine Offering health checkups and vaccination services as well.</p>
+            </div>
+            <div class="card-img">
+                <img src="hph.webp" alt="Inje Univ. Haeundae Paik Hospital">
+            </div>
+        </div>
+    </main>
+</body>
+</html>
