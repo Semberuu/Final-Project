@@ -21,7 +21,7 @@ a {
 }
 
 body {
-    background-image: url('../mint.jpeg');
+    background-image: url('mint.jpeg');
     background-color: rgba(196, 196, 196, 0.538);
     background-blend-mode: darken;
     background-size: 100%;
