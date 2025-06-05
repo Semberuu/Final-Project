@@ -85,14 +85,6 @@ nav .nav-right a {
 }
 
 .nav-search input {
-    padding: 6px 12px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 16px;
-    width: 180px;
-}
-
-.nav-search input {
   padding: 6px 12px;
   font-size: 16px;
   color: black;
@@ -100,6 +92,7 @@ nav .nav-right a {
   border-radius: 20px;
   width: 100%;
   max-width: 300px;
+  background-color: #eae9e9;
 }
 
 
